@@ -24,6 +24,8 @@ namespace PreStudentRegister.src
 				else if(_student_hours <= 12){_part_time = true;}
 			}
 		}
+
+		private List<TimeDOW> _schedule;
 		private List<Course> _course_list;
 
 		public Student()
