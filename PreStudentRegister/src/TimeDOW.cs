@@ -79,5 +79,23 @@ namespace PreStudentRegister.src
         {
             return DaysofWeek() + _time_start + ":00 - " + _time_end + ":00";
         }
-    }
+
+		public bool Overlap(TimeDOW other)
+		{
+			for (int i = _time_start; i <= _time_end; i++)
+			{
+				if (i >= other._time_start && i <= other._time_end)
+				{
+					for (int j = 0; j < 7; j++)
+					{
+						if (other._days_of_week[j] > 0 && _days_of_week[j] > 0)
+						{
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+	}
 }

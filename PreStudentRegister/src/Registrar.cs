@@ -8,11 +8,11 @@ namespace PreStudentRegister.src
     {
 		private List<Course> List_of_Courses = new List<Course>();
 
+		private List<Student> List_of_Students = new List<Student>();
+
+		private List<Professor> List_of_Professors = new List<Professor>();
+
 		private static Registrar _instance;
-
-		public delegate Student ConditionS();
-
-		public delegate Course ConditionC();
 
 		private Registrar()
 		{
@@ -28,23 +28,41 @@ namespace PreStudentRegister.src
 
 		}
 
-		public bool AddStudenttoCourse(ConditionS student_can_register, ConditionC no_course_conflicts)
+		public bool AddStudenttoCourse(Student s, Course c)
 		{
-			if (student_can_register() != null && no_course_conflicts() != null)
+			try
 			{
-				//add student to course
-				//course will need to update its roster
-				Console.WriteLine("Registration Success!");
+				if (!List_of_Students.Contains(s))
+				{
+					List_of_Students.Add(s);
+					//Console.WriteLine("Student added");
+				}
+				c._Roster.Add(s._name,s);
+				//s._hours_total += c._credit_hours;
+				//Console.WriteLine("Added to Roster");
+				//code to add student to course
+				//add student to list if he/she isnt on list
+				//update course function, update roster
 				return true;
 			}
-			else
+			catch(Exception ex)
 			{
-				Console.WriteLine("Registration Failed.");
+				Console.WriteLine(ex.StackTrace);
 				return false;
+
 			}
 		}
 
+		public void AddProfessortoCourse(Professor p, Course c)
+		{
 
+		}
+
+
+		public void UpdateCourse (Course c)
+		{
+
+		}
 
 
     }
